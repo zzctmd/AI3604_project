@@ -1,0 +1,8 @@
+#忽略数据文件夹
+dataset/
+#忽略输出模型文件夹
+output/
+#忽略模型参数
+/SAMed/checkpoints/sam_vit_b_01ec64.pth
+
+
