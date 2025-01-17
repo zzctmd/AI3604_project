@@ -124,6 +124,12 @@ python val.py -net sam -mod sam_adpt -exp_name REFUGE-MSAdapt -sam_ckpt ./checkp
 ```
 
 ## 📖 Retrieval Augumented Generation
+1. Navigate to the `SAMed` directory:
+```
+cd SAMed
+```
+
+2. Run the following commands to test RAG:
 >For FLARE dataset testing
 ```bash
 python test_rag.py --volume_path <Your testset> --num_classes 8 --list_dir <Your listdir> --is_savenii --output_dir <Your output directory> --lora_ckpt <Your pretrained model>
