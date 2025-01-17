@@ -85,6 +85,16 @@ python test.py --volume_path <Your testset> --num_classes 12 --list_dir <Your li
 
 You also need to change some code in the `test.py` for different dataset testing,you can learn the detail in the code.
 
+## 📖 Retrieval Augumented Generation
+>For FLARE dataset testing
+```bash
+python test_rag.py --volume_path <Your testset> --num_classes 8 --list_dir <Your listdir> --is_savenii --output_dir <Your output directory> --lora_ckpt <Your pretrained model>
+```
+
+>For Synapse dataset testing
+```bash
+python test_rag.py --volume_path <Your testset> --num_classes 12 --list_dir <Your listdir> --is_savenii --output_dir <Your output directory> --lora_ckpt <Your pretrained model> 
+```
 
 ## Contact
 If you have any questions, please contact us via 
