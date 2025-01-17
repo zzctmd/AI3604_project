@@ -6,7 +6,7 @@ RAG-SAM: A Hybrid Framework for Medical Image Segmentation Using Retrieval-Augme
     <br />
     <a href="https://github.com/zzctmd"><strong>Zichen Zou</strong></a>
     &nbsp;
-    <a href="https://github.com/ccmony"><strong>Yuanjie Chen</strong></a>
+    <a href="https://github.com/ccmoony"><strong>Yuanjie Chen</strong></a>
     &nbsp;
     <a href="https://github.com/why618188"><strong>Huayi Wang</strong></a>
     &nbsp;
