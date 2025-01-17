@@ -100,6 +100,7 @@ You also need to change some code in the test_rag.py for different dataset testi
 
 ## Contact
 If you have any questions, please contact us via 
+- cyj2003@sjtu.edu.cn
 - zzcnb123456@sjtu.edu.cn
 
 ## Acknowledgement
