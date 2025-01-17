@@ -20,11 +20,18 @@ Medical image segmentation is essential for diagnosis and treatment planning but
 
 
 ## 🛠️ Requirements
-Please run the following commands:
+To run **SAMed**, please run the following commands:
 ```
 conda create -n SAMed python=3.7.11
 conda activate SAMed
 pip install -r requirements.txt 
+```
+
+To run **Medical-SAM-Adapter**, please run the following commands:
+```
+cd Medical-SAM-Adapter
+conda env create -f environment.yml
+conda activate sam_adapt
 ```
 
 Download parameters of the original model SAM from [交大云盘](https://jbox.sjtu.edu.cn/l/q1hgrW) and put it into the `SAMed\checkpoints` folder
@@ -32,7 +39,9 @@ Download parameters of the original model SAM from [交大云盘](https://jbox.s
 ## 🚀 Training
 We use two RTX 3090 GPUs for training.
 
-1.Please Download the Synapse_origin dataset and FlARE_origin dataset which are trained and tested in our project from [交大云盘](https://jbox.sjtu.edu.cn/l/q1hgrW) and put them into the `dataset` folder.Then you need to run the code in `./SAMed/preprocess` to make the 3D data to slices for training and testing.The detailed operation can be found in the README file of this folder.After that  the directory structure of `dataset`is as follows:
+### Dataset Preparation
+
+Please Download the Synapse_origin dataset and FlARE_origin dataset which are trained and tested in our project from [交大云盘](https://jbox.sjtu.edu.cn/l/q1hgrW) and put them into the `dataset` folder.Then you need to run the code in `./SAMed/preprocess` to make the 3D data to slices for training and testing.The detailed operation can be found in the README file of this folder.After that  the directory structure of `dataset`is as follows:
 ```
 dataset
 ├── FLARE
@@ -46,44 +55,73 @@ dataset
 │   └── train_npz
 └── Synapse_origin
 ```
+### SAMed
 
-2.get into the Folder
+1. Navigate to the `SAMed` directory:
 ```
 cd SAMed
 ```
 
-3.Run these commands for training
+2. Run the following commands to start training:
 
->For FLARE dataset training
+> For FLARE dataset training
 ```bash
 python train_FLARE.py --root_path <Your folder> --output <Your output path> --warmup --AdamW 
 ```
 
->For Synapse dataset training
+> For Synapse dataset training
 ```bash
 python train.py --root_path <Your folder> --output <Your output path> --warmup --AdamW 
 ```
 
 Check the results in `<Your output path>`.
 
+### Medical-SAM-Adapter
+
+1. Navigate to the `Medical-SAM-Adapter` directory:
+```
+cd Medical-SAM-Adapter
+```
+
+2. Run the following command to start training:
+
+> For Synapse dataset training
+
+```bash
+python train.py -net sam -mod sam_adpt -exp_name REFUGE-MSAdapt -sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth -image_size 1024 -b 32 -dataset REFUGE -data_path ./data/REFUGE-MultiRater
+```
+
+- You can change the exp_name to any name you prefer.
+- If you encounter memory issues, you may reduce the `image_size` or `batch size`.
+
 ## 💡 Inference
 Here are the instructions: 
-1. Please download the [LoRA checkpoint of SAMed](https://jbox.sjtu.edu.cn/l/q1hgrW) in the output folder with differnet versions or train the model yourself,and put them in the `output` folder.
 
-2.ensure that you have already preprocessed the dataset.
+1. Please download the [LoRA checkpoint of SAMed](https://jbox.sjtu.edu.cn/l/q1hgrW) in the output folder with differnet versions or train the model yourself, and put them in the `output` folder.
 
-3. Run these commends to test the performance of SAMed.
->For FLARE dataset testing
+2. Ensure that you have already preprocessed the dataset.
+
+3. Run following commands to evaluate the performance of **SAMed**:
+
+> For FLARE dataset testing
 ```bash
 python test.py --volume_path <Your testset> --num_classes 8 --list_dir <Your listdir> --is_savenii --output_dir <Your output directory> --lora_ckpt <Your pretrained model> 
 ```
 
->For Synapse dataset testing
+> For Synapse dataset testing
 ```bash
 python test.py --volume_path <Your testset> --num_classes 12 --list_dir <Your listdir> --is_savenii --output_dir <Your output directory> --lora_ckpt <Your pretrained model> 
 ```
 
 You also need to change some code in the `test.py` for different dataset testing,you can learn the detail in the code.
+
+4. Run following commands to evaluate the performance of **Medical-SAM-Adapter**:
+
+> For Synapse dataset training
+
+```bash
+python val.py -net sam -mod sam_adpt -exp_name REFUGE-MSAdapt -sam_ckpt ./checkpoint/sam/sam_vit_b_01ec64.pth -image_size 1024 -b 32 -dataset REFUGE -data_path ./data/REFUGE-MultiRater
+```
 
 ## 📖 Retrieval Augumented Generation
 >For FLARE dataset testing
