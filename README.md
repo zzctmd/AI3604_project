@@ -4,13 +4,13 @@ RAG-SAM: A Hybrid Framework for Medical Image Segmentation Using Retrieval-Augme
 <p align="center">
     Project of AI3604 Computer Vision, 2024 Fall, SJTU
     <br />
-    <a href="https://github.com/Yog24"><strong>Gao Yuan</strong></a>
+    <a href="https://github.com/zzctmd"><strong>Zichen Zou</strong></a>
+    &nbsp;
+    <a href="https://github.com/ccmoony"><strong>Yuanjie Chen</strong></a>
     &nbsp;
     <a href="https://github.com/why618188"><strong>Huayi Wang</strong></a>
     &nbsp;
-    <a href="https://github.com/ccmony"><strong>Yuanjie Chen</strong></a>
-    &nbsp;
-    <a href="https://github.com/zzctmd"><strong>Zichen Zou</strong></a>
+    <a href="https://github.com/Yog24"><strong>Gao Yuan</strong></a>
     <br />
 </p>
 
