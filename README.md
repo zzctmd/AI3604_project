@@ -96,6 +96,8 @@ python test_rag.py --volume_path <Your testset> --num_classes 8 --list_dir <Your
 python test_rag.py --volume_path <Your testset> --num_classes 12 --list_dir <Your listdir> --is_savenii --output_dir <Your output directory> --lora_ckpt <Your pretrained model> 
 ```
 
+You also need to change some code in the test_rag.py for different dataset testing,you can learn the detail in the code.
+
 ## Contact
 If you have any questions, please contact us via 
 - zzcnb123456@sjtu.edu.cn
